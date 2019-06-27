@@ -11,7 +11,9 @@ defmodule <%= app_module %>.Application do
       # Start the Ecto repository
       <%= app_module %>.Repo,<% end %>
       # Start the endpoint when the application starts
-      <%= endpoint_module %>
+      <%= endpoint_module %>,
+      # Allows open connections an opportunity to drain while shutting down
+      {Plug.Cowboy.Drainer, refs: :all}
       # Starts a worker by calling: <%= app_module %>.Worker.start_link(arg)
       # {<%= app_module %>.Worker, arg},
     ]
